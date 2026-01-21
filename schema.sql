@@ -1,0 +1,14 @@
+CREATE TABLE chat_rooms (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE chat_messages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id INT NOT NULL,
+    author_name VARCHAR(120) NOT NULL,
+    body TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_chat_room FOREIGN KEY (room_id) REFERENCES chat_rooms(id) ON DELETE CASCADE
+);
